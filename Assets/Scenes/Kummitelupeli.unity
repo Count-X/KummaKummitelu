@@ -190,6 +190,7 @@ MonoBehaviour:
   cam: {fileID: 963194227}
   interactText: {fileID: 1923590291}
   Enemy: {fileID: 0}
+  TaskValues: {fileID: 0}
 --- !u!136 &4177090
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1077,7 +1078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd7d2bced6f3453d94ae225e41cea0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hearingCollider: {fileID: 0}
+  hearingRange: 100
 --- !u!1 &1778882837
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,7 +1786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684de70f98de547fbb108ce51ec481a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoiseRange: 10
+  NoiseRange: 100
   nAudio: {fileID: 1975671594}
   animator: {fileID: 0}
 --- !u!1 &1978365576

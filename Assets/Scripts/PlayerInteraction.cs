@@ -8,7 +8,8 @@ public class PlayerInteraction : MonoBehaviour
     public Camera cam;
     public TMP_Text interactText;
     public Transform Enemy;
-    public TaskObject TaskValues;
+    public TaskObject TaskValues = null;
+
     // Update is called once per frame
     void Update()
     {
@@ -29,6 +30,11 @@ public class PlayerInteraction : MonoBehaviour
                 if(TaskValues.animator != null)
                 {
                     //animator play
+                }
+                if (EnemyHearing.hearing.hearingRange - TaskValues.NoiseRange <= 0)
+                {
+                    EnemyNavigation.EnemyNav.eAgnt.ResetPath();
+                    EnemyNavigation.EnemyNav.eAgnt.destination = TaskValues.gameObject.transform.position;
                 }
             }
         }
