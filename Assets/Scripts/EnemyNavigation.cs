@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyNavigation : MonoBehaviour
 {
-
     public static EnemyNavigation EnemyNav;
 
     public Transform[] points;

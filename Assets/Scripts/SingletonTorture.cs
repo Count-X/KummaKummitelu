@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHearing : MonoBehaviour
+public class SingletonTorture : MonoBehaviour
 {
+    public static SingletonTorture[] singleton;
     // Start is called before the first frame update
     void Start()
     {
