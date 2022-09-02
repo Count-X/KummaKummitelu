@@ -8,32 +8,34 @@ public class Movement : MonoBehaviour
 
     public float fSpeed;
     public float sSpeed;
-    public float rotateSH = 2.0f;
-    public float rotateSV = 2.0f;
 
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
+    public CapsuleCollider playerCollider;
+
     private float ogSSpeed;
     private float ogFSpeed;
 
     private Rigidbody rb;
-    private Camera cam;
+
 
     private void Start()
     {
         ogFSpeed = fSpeed;
         ogSSpeed = sSpeed;
-        //rb = gameObject.GetComponent<Rigidbody>();
-        cam = gameObject.GetComponentInChildren<Camera>();
+
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             fSpeed /= 2;
             sSpeed /= 2;
+
+            playerCollider.height = 1.25f;
+
         } else if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             fSpeed *= 1.5f;
@@ -43,6 +45,8 @@ public class Movement : MonoBehaviour
         {
             fSpeed = ogFSpeed;
             sSpeed = ogSSpeed;
+
+            playerCollider.height = 2f;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
@@ -50,12 +54,10 @@ public class Movement : MonoBehaviour
             sSpeed = ogSSpeed;
         }
 
-        yaw += rotateSH * Input.GetAxis("Mouse X");
-        pitch -= rotateSV * Input.GetAxis("Mouse Y");
-        pitch = Mathf.Clamp(pitch, -80, 80);
         transform.position += transform.forward * Input.GetAxis("Vertical") * fSpeed;
         transform.position += transform.right * Input.GetAxis("Horizontal") * sSpeed;
-        transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 
     }
+
+
 }
