@@ -741,6 +741,8 @@ GameObject:
   - component: {fileID: 1401537048}
   - component: {fileID: 1401537047}
   - component: {fileID: 1401537051}
+  - component: {fileID: 1401537052}
+  - component: {fileID: 1401537050}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -807,6 +809,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1401537050
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401537046}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!136 &1401537051
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -821,6 +836,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1401537052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401537046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd7d2bced6f3453d94ae225e41cea0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1778882837
 GameObject:
   m_ObjectHideFlags: 0

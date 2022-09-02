@@ -19,12 +19,13 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Ray ray = new Ray(cam.transform.forward.normalized, cam.transform.position);
+            Ray ray = new Ray( cam.transform.position, cam.transform.forward.normalized);
             RaycastHit hit;
 
+            Debug.DrawRay(cam.transform.position, cam.transform.forward.normalized, Color.red, 3f);
             Debug.Log("Pressed E");
 
-            if (Physics.Raycast(ray, out hit, 10f))
+            if (col.Raycast(ray, out hit, 10f))
             {
                 Debug.Log("Interacted");
                 audioS.Play();
