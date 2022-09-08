@@ -5,6 +5,7 @@ using TMPro;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    //public Unity API Types
     public Camera cam;
     public TMP_Text interactText;
     public Transform Enemy;
@@ -15,14 +16,27 @@ public class PlayerInteraction : MonoBehaviour
     {
         Ray ray = new Ray(cam.transform.position, cam.transform.forward.normalized);
         RaycastHit hit;
+
+        //The whole process of interaction and the noise that interaction makes
         if(Physics.Raycast(ray, out hit, 10f))
         {
             TaskValues = hit.collider.gameObject.GetComponent<TaskObject>();
-            interactText.gameObject.SetActive(true);
+
+            if (hit.collider.gameObject.CompareTag("Interactable"))
+            {
+                interactText.gameObject.SetActive(true);
+            }
+            else
+            {
+                interactText.gameObject.SetActive(false);
+            }
+
             if (Input.GetKeyDown(KeyCode.E))
             {
-                //audioS.Play();
+                float Dist = Vector3.Distance(transform.position, Enemy.position);
                 // Tähän Mitä tapahtuu kun pelaaja interaktioi, Refrenssi scriptiin mahdollisesti
+
+
                 if(TaskValues.nAudio != null)
                 {
                     TaskValues.nAudio.Play();
@@ -31,17 +45,14 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     //animator play
                 }
-                if (EnemyHearing.hearing.hearingRange - TaskValues.NoiseRange <= 0)
+                //if statement to see if the enemy hears you
+                if (TaskValues.NoiseRange >= Dist)
                 {
                     EnemyNavigation.EnemyNav.eAgnt.ResetPath();
                     EnemyNavigation.EnemyNav.eAgnt.destination = TaskValues.gameObject.transform.position;
                 }
             }
         }
-        else
-        {
-            
-            interactText.gameObject.SetActive(false);
-        }
+        
     }
 }
