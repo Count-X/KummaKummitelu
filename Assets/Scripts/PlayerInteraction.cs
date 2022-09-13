@@ -17,19 +17,25 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit, 10f))
         {
+           
             TaskValues = hit.collider.gameObject.GetComponent<TaskObject>();
             interactText.gameObject.SetActive(true);
+          
+
             if (Input.GetKeyDown(KeyCode.E))
             {
+                Debug.Log("raycasting E");
                 //audioS.Play();
                 // Tähän Mitä tapahtuu kun pelaaja interaktioi, Refrenssi scriptiin mahdollisesti
-                if(TaskValues.nAudio != null)
+                if (TaskValues.nAudio != null)
                 {
                     TaskValues.nAudio.Play();
                 }
                 if(TaskValues.animator != null)
                 {
                     //animator play
+                    TaskValues.animator.Play("kirja");
+                    Debug.Log("animation plays");
                 }
                 if (EnemyHearing.hearing.hearingRange - TaskValues.NoiseRange <= 0)
                 {
