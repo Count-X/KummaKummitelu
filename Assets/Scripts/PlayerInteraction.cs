@@ -15,7 +15,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         Ray ray = new Ray(cam.transform.position, cam.transform.forward.normalized);
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit, 10f))
+        if (Physics.Raycast(ray, out hit, 10f) && hit.collider.CompareTag("Task"))
         {
            
             TaskValues = hit.collider.gameObject.GetComponent<TaskObject>();
@@ -42,6 +42,8 @@ public class PlayerInteraction : MonoBehaviour
                     EnemyNavigation.EnemyNav.eAgnt.ResetPath();
                     EnemyNavigation.EnemyNav.eAgnt.destination = TaskValues.gameObject.transform.position;
                 }
+                TaskValues.Done = true;
+                Tasks.tasksSingleton.CheckObjectives();
             }
         }
         else
