@@ -10,9 +10,7 @@ public class TaskObject : MonoBehaviour
     public AudioSource nAudio;
     public Animator animator;
 
-<<<<<<< Updated upstream
-  
-=======
+
     private void Update()
     {
         if (Done)
@@ -20,6 +18,5 @@ public class TaskObject : MonoBehaviour
             Destroy(gameObject.GetComponent<BoxCollider>());
         }
     }
->>>>>>> Stashed changes
 
 }

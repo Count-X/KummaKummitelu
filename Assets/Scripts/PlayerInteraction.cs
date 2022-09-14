@@ -33,9 +33,14 @@ public class PlayerInteraction : MonoBehaviour
                 }
                 if(TaskValues.animator != null)
                 {
+
+                    TaskValues.animator.SetTrigger("Opening");
+
                     //animator play
                     TaskValues.animator.Play("kirja");
                     Debug.Log("animation plays");
+
+
                 }
                 if (EnemyHearing.hearing.hearingRange - TaskValues.NoiseRange <= 0)
                 {
