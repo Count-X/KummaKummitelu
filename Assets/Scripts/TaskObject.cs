@@ -15,8 +15,19 @@ public class TaskObject : MonoBehaviour
     {
         if (Done)
         {
-            Destroy(gameObject.GetComponent<BoxCollider>());
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+            Invoke("ResetCollider", 3);
+            Done = false;
+
         }
+    }
+
+
+    public void ResetCollider()
+    {
+
+        gameObject.GetComponent<BoxCollider>().enabled = true;
+
     }
 
 }
