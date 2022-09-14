@@ -6,6 +6,7 @@ public class TaskObject : MonoBehaviour
 { 
     public float NoiseRange;
     public bool Done;
+    public bool Open;
 
     public AudioSource nAudio;
     public Animator animator;
@@ -13,11 +14,11 @@ public class TaskObject : MonoBehaviour
 
     private void Update()
     {
-        if (Done)
+        if (Open)
         {
             gameObject.GetComponent<BoxCollider>().enabled = false;
             Invoke("ResetCollider", 3);
-            Done = false;
+            Open = false;
 
         }
     }

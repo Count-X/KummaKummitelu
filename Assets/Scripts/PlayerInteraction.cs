@@ -36,6 +36,7 @@ public class PlayerInteraction : MonoBehaviour
 
                     TaskValues.animator.SetTrigger("Opening");
                     TaskValues.Done = true;
+                    TaskValues.Open = true;
 
                     //animator play
                     TaskValues.animator.Play("kirja");
