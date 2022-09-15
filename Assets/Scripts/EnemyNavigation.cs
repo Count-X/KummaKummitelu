@@ -11,20 +11,24 @@ public class EnemyNavigation : MonoBehaviour
 
     private int destPoint = 0;
     private int Attack = 1;
+    private float Timer;
 
     public Transform playerSpot;
     public NavMeshAgent eAgnt;
     public Transform lastSpot;
     public Collider col;
 
+    public float waitTime = 3f;
     public float Distance = 6f;
     public bool hasLight = false;
+    public bool doWait = false;
 
     public enum Modes
     {
         Patrol,
         Chase,
-        Waiting
+        Waiting,
+        Null
     }
 
     public Modes eModes;
@@ -68,14 +72,25 @@ public class EnemyNavigation : MonoBehaviour
         }
 
         bool canSeeP = CapabilityOfSight();
-        if (canSeeP)
+        if (canSeeP == true)
         {
+            Debug.Log("Chasing");
             eModes = Modes.Chase;
-            //lastSpot.position = playerSpot.position;
+            doWait = true;
+
         }
-        else
+        else 
         {
-            eModes = Modes.Patrol;
+            if(doWait)
+            {
+                eModes = Modes.Waiting;
+            }
+            else
+            {
+                Debug.Log("Patrol");
+                eModes = Modes.Patrol;
+                
+            }
 
         }
 
@@ -92,6 +107,9 @@ public class EnemyNavigation : MonoBehaviour
                     GotoNextPoint();
                 break;
             case Modes.Waiting:
+                //Debug.Log("Waiting");
+                eAgnt.isStopped = true;
+                StartCoroutine("Wait");
                 break;
         }
     }
@@ -125,5 +143,27 @@ public class EnemyNavigation : MonoBehaviour
             Debug.Log("Hit");
             Health.helth.health -= Attack;
         } 
+    }
+    public IEnumerator Wait()
+    {
+        Debug.Log("In Wait");
+
+        yield return new WaitForSeconds(waitTime);
+        //eModes = Modes.Patrol;
+        eAgnt.isStopped = false;
+        doWait = false;
+        /*if (Timer >= 5f)
+        {
+            Debug.Log("Waited");
+            //eAgnt.destination = transform.position;
+            return Modes.Patrol;
+            
+        }
+        else
+        {
+            Timer += Time.deltaTime;
+            Debug.Log(Timer);
+            return Modes.Null;
+        }*/
     }
 }

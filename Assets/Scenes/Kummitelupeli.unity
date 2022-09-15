@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: f70365fffcfe140a4b2db5f5203b46c1, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 51c55689e332944b08a77b38208bb3a4, type: 2}
 --- !u!4 &4177088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5684763375072068467, guid: 64255c6d0401b412c92340a1925cce70, type: 3}
@@ -1362,6 +1362,7 @@ MonoBehaviour:
   eAgnt: {fileID: 0}
   lastSpot: {fileID: 0}
   col: {fileID: 0}
+  waitTime: 3
   Distance: 6
   hasLight: 0
   eModes: 0
@@ -1372,14 +1373,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401537046}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.51515996, z: -0, w: 0.8570941}
   m_LocalPosition: {x: -2.09, y: 0, z: -3.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1963825258}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 62.016, z: 0}
 --- !u!136 &1401537051
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2308,12 +2309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db078079b069f4d1d8c839552aa57c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskObjects:
-  - {fileID: 2072768565}
-  - {fileID: 1975671595}
-  bools: 0000
+  taskObjects: []
+  bools: 
   allDone: 0
-  winCol: {fileID: 1997906685}
+  winCol: {fileID: 0}
 --- !u!1 &1997906683
 GameObject:
   m_ObjectHideFlags: 0
