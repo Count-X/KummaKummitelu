@@ -7,6 +7,7 @@ public class TaskObject : MonoBehaviour
     public float NoiseRange;
     public bool Done;
     public bool Open;
+    public string interactText;
 
     public AudioSource nAudio;
     public Animator animator;

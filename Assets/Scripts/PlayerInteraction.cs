@@ -19,6 +19,7 @@ public class PlayerInteraction : MonoBehaviour
         {
            
             TaskValues = hit.collider.gameObject.GetComponent<TaskObject>();
+            interactText.text = TaskValues.interactText;
             interactText.gameObject.SetActive(true);
           
 
@@ -35,7 +36,6 @@ public class PlayerInteraction : MonoBehaviour
                 {
 
                     TaskValues.animator.SetTrigger("Opening");
-                    TaskValues.Done = true;
                     TaskValues.Open = true;
 
                     //animator play
