@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5459764019837991718}
-  - component: {fileID: 5459764019837991717}
+  - component: {fileID: 3034979636028297681}
   m_Layer: 0
   m_Name: BookShelf
   m_TagString: Untagged
@@ -24,9 +24,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5459764019837991716}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0050444603, y: -1.6216841, z: -0.25901508}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.95, y: 0.95, z: 0.95}
   m_Children:
   - {fileID: 5498405930681209755}
   - {fileID: 5498405929967330639}
@@ -124,21 +124,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5459764019837991717
-MonoBehaviour:
+--- !u!65 &3034979636028297681
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5459764019837991716}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 684de70f98de547fbb108ce51ec481a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NoiseRange: 15
-  nAudio: {fileID: 0}
-  animator: {fileID: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.116404, y: 4.0182123, z: 4.2177763}
+  m_Center: {x: -0.54876655, y: 1.0019128, z: -0.004154256}
 --- !u!1001 &5459764018026057055
 PrefabInstance:
   m_ObjectHideFlags: 0
