@@ -22,6 +22,11 @@ public class TaskObject : MonoBehaviour
             Open = false;
 
         }
+
+        if (Done)
+        {
+            Destroy(gameObject.GetComponent<BoxCollider>());
+        }
     }
 
 

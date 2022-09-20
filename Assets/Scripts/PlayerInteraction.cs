@@ -15,7 +15,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         Ray ray = new Ray(cam.transform.position, cam.transform.forward.normalized);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 10f) && hit.collider.CompareTag("Task"))
+        if (Physics.Raycast(ray, out hit, 5f) && hit.collider.CompareTag("Task"))
         {
            
             TaskValues = hit.collider.gameObject.GetComponent<TaskObject>();

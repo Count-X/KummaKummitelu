@@ -17,6 +17,7 @@ public class EnemyNavigation : MonoBehaviour
     public NavMeshAgent eAgnt;
     public Transform lastSpot;
     public Collider col;
+    public Animator anim;
 
     public float waitTime = 3f;
     public float Distance = 6f;
@@ -28,6 +29,7 @@ public class EnemyNavigation : MonoBehaviour
         Patrol,
         Chase,
         Waiting,
+        Attacking,
         Null
     }
 
@@ -87,7 +89,7 @@ public class EnemyNavigation : MonoBehaviour
             }
             else
             {
-                Debug.Log("Patrol");
+                //Debug.Log("Patrol");
                 eModes = Modes.Patrol;
                 
             }
@@ -105,6 +107,8 @@ public class EnemyNavigation : MonoBehaviour
             case Modes.Patrol:
                 if (!eAgnt.pathPending && eAgnt.remainingDistance < 1f)
                     GotoNextPoint();
+
+                anim.Play(0);
                 break;
             case Modes.Waiting:
                 //Debug.Log("Waiting");
