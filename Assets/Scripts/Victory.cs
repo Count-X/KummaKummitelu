@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Victory : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if(Tasks.tasksSingleton.allDone == true)
         {
-            Debug.Log("Won");
-        }
-        else
-        {
-            Debug.Log("Tasks not done");
+            SceneManager.LoadScene(2);
         }
     }
 }

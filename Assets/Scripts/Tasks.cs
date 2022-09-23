@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Tasks : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Tasks : MonoBehaviour
     public bool[] bools;
     public bool allDone;
     public Collider winCol;
+    public TMP_Text taskDoneText;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +48,7 @@ public class Tasks : MonoBehaviour
         if(allDone == true)
         {
             Debug.Log("Won");
-            //winCol.enabled = true;
+            taskDoneText.enabled = true;
         }
     }
 }

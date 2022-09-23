@@ -5,17 +5,30 @@ using TMPro;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public static PlayerInteraction playerInt;
     public Camera cam;
     public TMP_Text interactText;
     public Transform Enemy;
     public TaskObject TaskValues = null;
+
+    private void Start()
+    {
+        if(playerInt == null)
+        {
+            playerInt = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
         Ray ray = new Ray(cam.transform.position, cam.transform.forward.normalized);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 5f) && hit.collider.CompareTag("Task"))
+        if (Physics.Raycast(ray, out hit, 5f) && hit.collider.CompareTag("Task") | hit.collider.CompareTag("Door"))
         {
            
             TaskValues = hit.collider.gameObject.GetComponent<TaskObject>();
@@ -23,7 +36,7 @@ public class PlayerInteraction : MonoBehaviour
             interactText.gameObject.SetActive(true);
           
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && hit.collider.CompareTag("Task"))
             {
                 Debug.Log("raycasting E");
                 //audioS.Play();
@@ -34,28 +47,20 @@ public class PlayerInteraction : MonoBehaviour
                 }
                 if(TaskValues.animator != null)
                 {
-
-                    TaskValues.animator.SetTrigger("Opening");
-                    TaskValues.Open = true;
-
-                    //animator play
                     TaskValues.animator.Play("kirja");
-                    Debug.Log("animation plays");
-
-
                 }
-                if (EnemyHearing.hearing.hearingRange - TaskValues.NoiseRange <= 0)
-                {
-                    EnemyNavigation.EnemyNav.eAgnt.ResetPath();
-                    EnemyNavigation.EnemyNav.eAgnt.destination = TaskValues.gameObject.transform.position;
-                }
+                EnemyHearing.hearing.Hear(TaskValues.NoiseRange, TaskValues.transform);
                 TaskValues.Done = true;
                 Tasks.tasksSingleton.CheckObjectives();
+            }
+            else if (Input.GetKeyDown(KeyCode.E) && hit.collider.CompareTag("Door"))
+            {
+                TaskValues.Open = true;
+                EnemyHearing.hearing.Hear(10f, hit.collider.gameObject.transform);
             }
         }
         else
         {
-            
             interactText.gameObject.SetActive(false);
         }
     }

@@ -12,17 +12,19 @@ public class EnemyNavigation : MonoBehaviour
     private int destPoint = 0;
     private int Attack = 1;
     private float Timer;
+    private float ChaseSpeed;
 
     public Transform playerSpot;
     public NavMeshAgent eAgnt;
-    public Transform lastSpot;
+    //public Transform lastSpot;
     public Collider col;
     public Animator anim;
+    public TaskObject NavTaskValues;
 
     public float waitTime = 3f;
     public float Distance = 6f;
-    public bool hasLight = false;
     public bool doWait = false;
+    public float Speed = 3f;
 
     public enum Modes
     {
@@ -47,11 +49,15 @@ public class EnemyNavigation : MonoBehaviour
             Destroy(gameObject);
         }
         eAgnt = gameObject.GetComponent<NavMeshAgent>();
-        SetSpeed(2f);
+        SetSpeed(Speed);
         eAgnt.autoBraking = false;
 
         col = GetComponent<Collider>();
         //GotoNextPoint();
+
+        Physics.IgnoreLayerCollision(3, 7);
+
+        ChaseSpeed = Speed * 2;
     }
 
     void GotoNextPoint()
@@ -68,10 +74,6 @@ public class EnemyNavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hasLight == true)
-        {
-            Distance = 9f;
-        }
 
         bool canSeeP = CapabilityOfSight();
         if (canSeeP == true)
@@ -102,17 +104,18 @@ public class EnemyNavigation : MonoBehaviour
         {
             case Modes.Chase:
                 eAgnt.SetDestination(playerSpot.position);
-                //SetSpeed(eAgnt.speed * 1.5f);
+                anim.Play("Running");
+                SetSpeed(ChaseSpeed);
                 break;
             case Modes.Patrol:
                 if (!eAgnt.pathPending && eAgnt.remainingDistance < 1f)
                     GotoNextPoint();
-
-                anim.Play(0);
+                    anim.Play("Walk");
                 break;
             case Modes.Waiting:
                 //Debug.Log("Waiting");
                 eAgnt.isStopped = true;
+                anim.Play("Idle");
                 StartCoroutine("Wait");
                 break;
         }
@@ -144,8 +147,8 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Hit");
-            Health.helth.health -= Attack;
+            anim.Play("Attack");
+            Health.helth.health -= Attack * Health.helth.health;
         } 
     }
     public IEnumerator Wait()
@@ -156,18 +159,12 @@ public class EnemyNavigation : MonoBehaviour
         //eModes = Modes.Patrol;
         eAgnt.isStopped = false;
         doWait = false;
-        /*if (Timer >= 5f)
+    }
+    public void CloseToDoor(Transform door)
+    {
+        if (door.gameObject.CompareTag("Door"))
         {
-            Debug.Log("Waited");
-            //eAgnt.destination = transform.position;
-            return Modes.Patrol;
-            
+            door.gameObject.GetComponent<TaskObject>().Open |= Vector3.Distance(transform.position, door.position) <= 3f;
         }
-        else
-        {
-            Timer += Time.deltaTime;
-            Debug.Log(Timer);
-            return Modes.Null;
-        }*/
     }
 }

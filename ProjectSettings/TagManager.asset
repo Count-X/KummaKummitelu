@@ -5,15 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Task
+  - Door
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Door
   - Water
   - UI
   - Interactable
-  - 
+  - Enemy
   - 
   - 
   - 
